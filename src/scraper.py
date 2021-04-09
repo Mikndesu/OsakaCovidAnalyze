@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 
 
 class Scraper:
@@ -10,3 +11,7 @@ class Scraper:
         response = requests.get(osakaCovidDataCSVLink)
         with open(self._Temp_CSV_Path, 'wb') as saveFile:
             saveFile.write(response.content)
+
+
+    def parse(self):
+
