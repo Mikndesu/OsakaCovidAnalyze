@@ -3,11 +3,16 @@ from src import scraper
 
 
 class Test(unittest.TestCase):
+    scrape = scraper.Scraper()
     def test_download(self):
-        scrape = scraper.Scraper()
-        scrape.download()
+        self.scrape.download()
         try:
-            with open(scrape._Temp_CSV_Path, "r") as f:
+            with open(self.scrape._Temp_CSV_Path, "r") as f:
                 print()
         except FileNotFoundError as e:
             self.assertFalse(False)
+    
+    def test_csv(self):
+        self.scrape.parse()
+        print(self.scrape.df)
+        self.assertFalse(False)
