@@ -1,18 +1,19 @@
 import unittest
-from src import scraper
+from src import Scraper
 
 
 class Test(unittest.TestCase):
-    scrape = scraper.Scraper()
+    scraper = Scraper.Scraper()
+
     def test_download(self):
-        self.scrape.download()
+        self.scraper.download()
         try:
-            with open(self.scrape._Temp_CSV_Path, "r") as f:
+            with open(self.scraper._Temp_CSV_Path, "r"):
                 print()
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             self.assertFalse(False)
-    
+
     def test_csv(self):
-        self.scrape.parse()
-        print(self.scrape.df)
+        self.scraper.parse()
+        print(self.scraper.df)
         self.assertFalse(False)
