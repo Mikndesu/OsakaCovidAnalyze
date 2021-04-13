@@ -13,4 +13,5 @@ if __name__ == "__main__":
     ax.set_yticks(np.linspace(0, 900, 10))
     fig.suptitle("The number of Covid positive people of Osaka")
     pyplot.plot(scrape.df["日付"], scrape.df["陽性人数"])
+    pyplot.savefig("OsakaCovidGraph")
     pyplot.show()
