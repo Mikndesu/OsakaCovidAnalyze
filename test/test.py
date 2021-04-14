@@ -15,5 +15,5 @@ class Test(unittest.TestCase):
 
     def test_csv(self):
         self.scraper.parse()
-        print(self.scraper.df)
+        print(self.scraper.df["2021-04-10":"2021-04-13"]["陽性人数"])
         self.assertFalse(False)

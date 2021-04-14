@@ -6,7 +6,7 @@ import numpy as np
 
 class Graph:
 
-    def __init__(self):
+    def __init__(self, fromDate=None, toDate=None):
         scraper = Scraper.Scraper()
         scraper.download().parse()
         self._scraper = scraper
@@ -18,9 +18,12 @@ class Graph:
                 tz=None))
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m"))
         ax.grid()
-        ax.set_yticks(np.linspace(0, 900, 10))
+        ax.set_yticks(np.arange(0, 1200, 100))
         fig.suptitle("The number of Covid positive people of Osaka")
-        pyplot.plot(self._scraper.df["日付"], self._scraper.df["陽性人数"])
+        if fromDate is None:
+            pyplot.plot(self._scraper.df["日付"], self._scraper.df["陽性人数"])
+        else:
+            pyplot.plot(self._scraper.df[fromDate:toDate]["日付"], self._scraper.df[fromDate:toDate]["陽性人数"])
 
     def saveGraphAsPNG(self, savedTo=None):
         if savedTo is not None:

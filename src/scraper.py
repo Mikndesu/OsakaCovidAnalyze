@@ -18,4 +18,5 @@ class Scraper:
 
     def parse(self):
         self.df = pd.read_csv(self._Temp_CSV_Path, encoding='shift-jis')
+        self.df = self.df.set_index('日付', drop=False)
         self.df["日付"] = mdates.date2num(self.df["日付"])
